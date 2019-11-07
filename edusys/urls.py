@@ -10,6 +10,7 @@ urlpatterns = [
     path('login', views.login_form),
     path('login_page', views.login_page),
     path('contact_us', views.enter_contact_us),
-    path('submit_contact', views.submit_contact)
+    path('submit_contact', views.submit_contact),
+    path('send_email', views.sendEmail)
 
 ]

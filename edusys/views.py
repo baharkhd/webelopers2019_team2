@@ -1,10 +1,12 @@
 # coding=utf-8
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.forms import forms
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
+from django.conf import settings
 
 # Create your views here.
 from django.urls import path
@@ -59,10 +61,18 @@ def submit_contact(request):
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
         if form.is_valid():
-            # email = form.cleaned_data.get("email")
+            email = form.cleaned_data.get("email")
+            title = form.cleaned_data.get("title")
+            text = form.cleaned_data.get("text")
             # if request.user.email == email:
-            return render(request, 'contact_done.html')
+            sendEmail(email, title, text)
 
+            # return render(request, 'contact_done.html')
         else:
-            return HttpResponse(form.errors)
+            return HttpResponse(form.email)
     return render(request, 'contact_form.html')
+
+
+def sendEmail(fromEmail, title, text):
+    res = send_mail(title, (fromEmail, text), fromEmail, ['webe19lopers@gmail.com', ])
+    return HttpResponse('%s' % res)
