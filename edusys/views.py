@@ -9,7 +9,7 @@ from django.contrib.auth import login, authenticate
 # Create your views here.
 from django.urls import path
 
-from edusys.forms import SignUpForm, LoginForm
+from edusys.forms import SignUpForm, LoginForm, ContactUsForm
 
 
 def navbar(request):
@@ -49,3 +49,20 @@ def signup(request):
             user = form.save()
             user.save()
     return render(request, 'register.html')
+
+
+def enter_contact_us(request):
+    return render(request, 'contact_form.html')
+
+
+def submit_contact(request):
+    if request.method == 'POST':
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            # email = form.cleaned_data.get("email")
+            # if request.user.email == email:
+            return render(request, 'contact_done.html')
+
+        else:
+            return HttpResponse(form.errors)
+    return render(request, 'contact_form.html')

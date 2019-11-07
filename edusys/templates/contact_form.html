@@ -6,7 +6,7 @@
     <title>Contact Us</title>
 </head>
 <body>
-    {% block contact %}
+{% block contact %}
     <form id="contact_us_form" class="ui form" method="post" action="/submit_contact">
         {% csrf_token %}
         <label>عنوان</label>

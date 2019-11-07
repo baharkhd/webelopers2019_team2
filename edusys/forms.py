@@ -17,3 +17,11 @@ class LoginForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'password',)
+
+
+class ContactUsForm(forms.Form):
+    title = forms.CharField(max_length=200)
+    email = forms.EmailField(required=True)
+    text = forms.CharField(min_length=10, max_length=250, widget=forms.Textarea, required=True)
+
+
