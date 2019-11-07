@@ -1,37 +1,26 @@
-<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-<script src="semantic/dist/semantic.min.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Title</title>
 </head>
 <body>
-<div class="ui pointing menu">
-  <a class="active item">
-    Home
-  </a>
-  <a class="item">
-    Messages
-  </a>
-  <a class="item">
-    Friends
-  </a>
-  <div class="right menu">
-    <div class="item">
-      <div class="ui transparent icon input">
-        <input type="text" placeholder="Search...">
-        <i class="search link icon"></i>
-      </div>
-    </div>
-  </div>
+<div id="navbar" class="ui pointing menu">
+    <a id="login" class="item">
+        ورود
+    </a>
+    <a id="register" class="item">
+        ثبت نام
+    </a>
+    <a id="homepage" class="active item" href="/homepage">
+        صفحه اصلی
+    </a>
 </div>
-<div class="ui segment">
-  <p></p>
-</div>
+{% block homepage %}
+{% endblock %}
 </body>
 </html>
