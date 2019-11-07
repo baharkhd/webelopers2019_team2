@@ -13,11 +13,11 @@ from edusys.forms import SignUpForm, LoginForm
 
 
 def navbar(request):
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
 
 
 def homepage(request):
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
 
 
 def enter_register(request):
@@ -29,7 +29,7 @@ def login_form(request):
 
 
 def login_page(request):
-    error = ''
+    error = ""
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
@@ -37,7 +37,9 @@ def login_page(request):
         login(request, user)
     else:
         error = "error"
-    return render(request, 'homepage_login.html', {'error': error})
+    # return HttpResponse(error)
+    context = {'file': 'none.html', 'error': error}
+    return render(request, 'homepage.html', context)
 
 
 def signup(request):
