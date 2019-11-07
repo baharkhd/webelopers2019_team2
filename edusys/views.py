@@ -7,7 +7,7 @@ from django.urls import path
 
 
 def navbar(request):
-    return render(request, 'base.html')
+    return render(request, 'homepage.html')
 
 
 def homepage(request):
