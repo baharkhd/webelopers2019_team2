@@ -7,7 +7,7 @@
 </head>
 <body>
 {% block register %}
-    <form id="register_form" class="ui form" method="post" action="/login">
+    <form id="register_form" class="ui form" method="post" action="/signup">
         {% csrf_token %}
         <label>نام</label>
         <input name="first_name" placeholder="نام" type="text">
@@ -21,16 +21,8 @@
         <input name="password1" placeholder="گذرواژه" type="text">
         <label>تکرار گذرواژه</label>
         <input name="password2" placeholder="تکرار گذرواژه" type="text">
-
-
         <button name="submit" class="ui button" type="submit">">ورود</button>
     </form>
-
-
-
-
-
-
 {% endblock %}
 </body>
 </html>
