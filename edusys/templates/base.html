@@ -9,7 +9,7 @@
     <title>Title</title>
 </head>
 <body>
-<div id="navbar" class="ui pointing menu">
+<div id="navbar" class="ui pointing menu" href="/login">
     <a id="login" class="item">
         ورود
     </a>
@@ -19,10 +19,16 @@
     <a id="homepage" class="active item" href="/">
         صفحه اصلی
     </a>
+    <a id="contact_us" class="active item" href="/contact">
+        تماس با ما
+    </a>
+
 </div>
 {% block homepage %}
 {% endblock %}
 {% block register %}
+{% endblock %}
+{% block contact %}
 {% endblock %}
 </body>
 </html>

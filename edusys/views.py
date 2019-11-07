@@ -9,7 +9,7 @@ from django.contrib.auth import login, authenticate
 # Create your views here.
 from django.urls import path
 
-from edusys.forms import SignUpForm
+from edusys.forms import SignUpForm, LogInForm
 
 
 def navbar(request):
@@ -30,21 +30,39 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.save()
-            # first_name = form.cleaned_data.get('first_name')
-            # last_name = form.cleaned_data.get('last_name')
-            # username = form.cleaned_data.get('username')
-            # email = form.cleaned_data.get('email')
-            # password1 = form.cleaned_data.get('password1')
-            # password2 = form.cleaned_data.get('password2')
-            # user = User.objects.create_user(username, email, password1)
-            # user2 = User
-            # user.password2 = password2
-            # user.last_name = last_name
-            # user.first_name = first_name
-            # user.save()
-        else:
-            return HttpResponse(form.errors)
-    else:
-        return HttpResponse('salam salam')
 
     return render(request, 'register.html')
+
+
+# def user_login(request):
+#     if request.method == 'POST':
+#         form = LogInForm()
+#         if form.is_valid():
+#             # user = form.save()
+#             username = form.cleaned_data.get('username')
+#             password1 = form.cleaned_data.get('password1')
+#             user = authenticate(request, username=username, password1=password1)
+#             if user:
+#                 pass
+#             else:
+#                 pass
+#         else:
+
+
+
+
+def enter_login(request):
+    return render(request, 'login_form.html')
+
+
+def enter_contact_page(request):
+    return render(request, 'contact_form.html')
+
+
+def submit_contact(request):
+    if request.method == "POST":
+        pass
+
+
+def contact_done(request):
+    return render(request, 'contact_done.html')

@@ -6,5 +6,9 @@ from edusys import views
 urlpatterns = [
     path('', views.navbar),
     url(r'^register', views.enter_register, name='register'),
-    path('login', views.signup)
+    path('signup', views.signup),
+    path('login', views.enter_login),
+    path('contact', views.enter_contact_page),
+    path('user_login', views.user_login)
+
 ]

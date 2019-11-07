@@ -7,7 +7,7 @@
 </head>
 <body>
 {% block register %}
-    <form id="register_form" class="ui form" method="post" action="/login">
+    <form id="register_form" class="ui form" method="post" action="/signup">
         {% csrf_token %}
         <label>نام</label>
         <input name="first_name" placeholder="نام" type="text">

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+</head>
+<body>
+    {% block contact %}
+    <form id="contact_us_form" class="ui form" method="post" action="/submit_contact">
+        {% csrf_token %}
+        <label>عنوان</label>
+        <input name="title" placeholder="عنوان" type="text">
+        <label>ایمیل</label>
+        <input name="email" placeholder="ایمیل" type="text">
+        <label>متن</label>
+        <textarea name="text" placeholder="متن" maxlength="250" minlength="10"></textarea>
+
+        <button name="submit" class="ui button" type="submit">">ورود</button>
+    </form>
+
+{% endblock %}
+</body>
+</html>
