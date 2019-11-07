@@ -12,3 +12,7 @@ def navbar(request):
 
 def homepage(request):
     return render(request, 'homepage.html')
+
+
+def register(request):
+    return render(request, 'register.html')
