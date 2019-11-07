@@ -7,33 +7,23 @@
 </head>
 <body>
 {% block register %}
-    <form id="register_form" class="ui form">
-        <div class="field">
-            <label>نام</label>
-            <input name="first_name" placeholder="نام" type="text">
-        </div>
-        <div class="field">
-            <label>نام خانوادگی</label>
-            <input name="last_name" placeholder="نام خانوادگی" type="text">
-        </div>
-        <div class="field">
-            <label>نام کاربری</label>
-            <input name="username" placeholder="نام کاربری" type="text">
-        </div>
-        <div class="field">
-            <label>ایمیل</label>
-            <input name="email" placeholder="ایمیل" type="text">
-        </div>
-        <div class="field">
-            <label>گذرواژه</label>
-            <input name="password1" placeholder="گذرواژه" type="text">
-        </div>
-        <div class="field">
-            <label>تکرار گذرواژه</label>
-            <input name="password2" placeholder="تکرار گذرواژه" type="text">
-        </div>
+    <form id="register_form" class="ui form" method="post" action="/login">
+        {% csrf_token %}
+        <label>نام</label>
+        <input name="first_name" placeholder="نام" type="text">
+        <label>نام خانوادگی</label>
+        <input name="last_name" placeholder="نام خانوادگی" type="text">
+        <label>نام کاربری</label>
+        <input name="username" placeholder="نام کاربری" type="text">
+        <label>ایمیل</label>
+        <input name="email" placeholder="ایمیل" type="text">
+        <label>گذرواژه</label>
+        <input name="password1" placeholder="گذرواژه" type="text">
+        <label>تکرار گذرواژه</label>
+        <input name="password2" placeholder="تکرار گذرواژه" type="text">
 
-        <button name="submit" class="ui button" type="submit">ورود</button>
+
+        <button name="submit" class="ui button" type="submit">">ورود</button>
     </form>
 
 
