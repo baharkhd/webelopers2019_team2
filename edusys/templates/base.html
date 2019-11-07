@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Title</title>
+</head>
+<body>
+<div id="navbar" class="ui pointing menu">
+    <a id="login" class="item">
+        ورود
+    </a>
+    <a id="register" class="item">
+        ثبت نام
+    </a>
+    <a id="homepage" class="active item" href="/">
+        صفحه اصلی
+    </a>
+</div>
+{% block homepage %}
+{% endblock %}
+</body>
+</html>
