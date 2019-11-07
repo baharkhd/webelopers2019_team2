@@ -14,5 +14,6 @@ def homepage(request):
     return render(request, 'homepage.html')
 
 
-def register(request):
+def enter_register(request):
     return render(request, 'register.html')
+

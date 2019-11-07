@@ -7,7 +7,40 @@
 </head>
 <body>
 {% block register %}
-    varede safeye sabtenam shodid
+    <form id="register_form" class="ui form">
+        <div class="field">
+            <label>نام</label>
+            <input name="first_name" placeholder="نام" type="text">
+        </div>
+        <div class="field">
+            <label>نام خانوادگی</label>
+            <input name="last_name" placeholder="نام خانوادگی" type="text">
+        </div>
+        <div class="field">
+            <label>نام کاربری</label>
+            <input name="username" placeholder="نام کاربری" type="text">
+        </div>
+        <div class="field">
+            <label>ایمیل</label>
+            <input name="email" placeholder="ایمیل" type="text">
+        </div>
+        <div class="field">
+            <label>گذرواژه</label>
+            <input name="password1" placeholder="گذرواژه" type="text">
+        </div>
+        <div class="field">
+            <label>تکرار گذرواژه</label>
+            <input name="password2" placeholder="تکرار گذرواژه" type="text">
+        </div>
+
+        <button name="submit" class="ui button" type="submit">ورود</button>
+    </form>
+
+
+
+
+
+
 {% endblock %}
 </body>
 </html>
