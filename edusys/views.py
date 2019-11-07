@@ -9,19 +9,37 @@ from django.contrib.auth import login, authenticate
 # Create your views here.
 from django.urls import path
 
-from edusys.forms import SignUpForm, LogInForm
+from edusys.forms import SignUpForm, LoginForm
 
 
 def navbar(request):
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
 
 
 def homepage(request):
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
 
 
 def enter_register(request):
     return render(request, 'register.html')
+
+
+def login_form(request):
+    return render(request, 'login.html')
+
+
+def login_page(request):
+    error = ""
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+    else:
+        error = "error"
+    # return HttpResponse(error)
+    context = {'file': 'none.html', 'error': error}
+    return render(request, 'homepage.html', context)
 
 
 def signup(request):
@@ -30,39 +48,4 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.save()
-
     return render(request, 'register.html')
-
-
-# def user_login(request):
-#     if request.method == 'POST':
-#         form = LogInForm()
-#         if form.is_valid():
-#             # user = form.save()
-#             username = form.cleaned_data.get('username')
-#             password1 = form.cleaned_data.get('password1')
-#             user = authenticate(request, username=username, password1=password1)
-#             if user:
-#                 pass
-#             else:
-#                 pass
-#         else:
-
-
-
-
-def enter_login(request):
-    return render(request, 'login_form.html')
-
-
-def enter_contact_page(request):
-    return render(request, 'contact_form.html')
-
-
-def submit_contact(request):
-    if request.method == "POST":
-        pass
-
-
-def contact_done(request):
-    return render(request, 'contact_done.html')
