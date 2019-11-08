@@ -48,18 +48,25 @@ def login_page(request):
         login_form(request)
 
 
-
 def signup(request):
+    login_error = ''
     if request.method == "POST":
         form = SignUpForm(request.POST)
+        pass2 = request.POST['password2']
+        pass1 = request.POST['password1']
+        if pass1 != pass2:
+            login_error = 'گذرواژه و تکرار گذرواژه یکسان نیستند'
+        if User.objects.filter(username__exact=request.POST['username']):
+            login_error = 'نام کاربری شما در سیستم موجود است'
         if form.is_valid():
             user = form.save()
             user.save()
-    return render(request, 'register.html')
+        # else:
+    # return HttpResponse(login_error)
+    return render(request, 'register.html', {"login_error": login_error})
 
 
 def submit_contact(request):
-
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
         if form.is_valid():
