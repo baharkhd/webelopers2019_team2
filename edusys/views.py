@@ -124,7 +124,10 @@ def create_course(request):
 
 
 def courses(request):
-    return HttpResponse('courses')
+    list = []
+    for course in Course.objects.all():
+        list.append(course.name)
+    return render(request, 'view_courses.html', {'list': list})
 
 
 def save_course(request):
@@ -133,9 +136,6 @@ def save_course(request):
         if form.is_valid():
             course = form.save()
             course.save()
-            return HttpResponse('saved')
-        else:
-            print(form.errors)
-            return HttpResponse('faillll')
+            return redirect('/make_new_course')
     else:
-        return HttpResponse('/make_new_course')
+        return redirect('/make_new_course')
