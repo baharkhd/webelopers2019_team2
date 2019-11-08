@@ -31,18 +31,20 @@ def login_form(request):
 
 
 def login_page(request):
-    error = ""
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        context = {'file': 'none.html', 'error': error}
-        return render(request, 'homepage.html', context)
-    else:
-        error = "error"
-        context = {'file': 'base.html', 'error': error}
-        return render(request, 'login.html', context)
+    if request.method == 'POST':
+        error = ""
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            context = {'file': 'none.html', 'error': error}
+            return render(request, 'homepage.html', context)
+        else:
+            error = "error"
+            context = {'file': 'base.html', 'error': error}
+            return render(request, 'login.html', context)
+    login_form(request)
 
 
 def signup(request):
@@ -69,6 +71,7 @@ def submit_contact(request):
         else:
             return HttpResponse(form.errors)
     return render(request, 'contact_form.html')
+
 
 # def submit_contact(request):
 #     if request.method == 'POST':
