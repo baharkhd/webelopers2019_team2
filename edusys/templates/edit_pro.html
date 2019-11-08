@@ -1,0 +1,12 @@
+{% extends 'none.html' %}
+
+{% block fill_block %}
+    <form id="setting_form" class="ui form" method="post" action="/edit">
+        {% csrf_token %}
+        <label>نام</label>
+        <input name="first_name" placeholder="عنوان" type="text" required>
+        <label>نام خانوادگی</label>
+        <input name="last_name" placeholder="ایمیل" type="text" required>
+        <button name="submit" class="ui button" type="submit">ویرایش</button>
+    </form>
+{% endblock %}

@@ -12,5 +12,6 @@ urlpatterns = [
     path('contact_us', views.submit_contact),
     path('submit_contact', views.submit_contact),
     path('logout', views.logout_func),
-    path('profile', views.show_profile)
+    path('profile', views.show_profile),
+    path('edit', views.edit_profile)
 ]

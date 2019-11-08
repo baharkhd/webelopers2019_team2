@@ -11,7 +11,7 @@ from django.conf import settings
 # Create your views here.
 from django.urls import path
 
-from edusys.forms import SignUpForm, ContactUsForm
+from edusys.forms import SignUpForm, ContactUsForm, EditProfileForm
 
 
 def navbar(request):
@@ -68,7 +68,6 @@ def logout_func(request):
 
 
 def submit_contact(request):
-    file = None
     if request.user.is_authenticated:
         file = 'none.html'
     else:
@@ -79,7 +78,7 @@ def submit_contact(request):
             subject = form.cleaned_data.get("title")
             from_email = form.cleaned_data.get("email")
             body = str(form.cleaned_data.get("text")) + str(from_email)
-            to_email = ["webe19lopers@gmail.com", ]
+            to_email = "baharkh127@gmail.com"
             # send_mail(subject, body, 'hamilamailee77@gmail.com', to_email)
             email = EmailMessage(subject, body, to_email)
             email.send()
@@ -96,3 +95,17 @@ def show_profile(request):
 
     context = {'first_name': first_name, 'last_name': last_name, 'username': username}
     return render(request, 'profile.html', context)
+
+
+def edit_profile(request):
+    if request.method == 'GET':
+        return render(request, 'edit_pro.html')
+    else:
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data.get("first_name")
+            last_name = form.cleaned_data.get("last_name")
+            request.user.first_name = first_name
+            request.user.last_name = last_name
+            request.user.save()
+            return redirect('/profile')
