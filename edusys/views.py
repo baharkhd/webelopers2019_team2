@@ -27,7 +27,7 @@ def enter_register(request):
 
 
 def login_form(request):
-    return render(request, 'login.html')
+    return render(request, 'login.html', {'error': ''})
 
 
 def login_page(request):
@@ -37,10 +37,12 @@ def login_page(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
+        context = {'file': 'none.html', 'error': error}
+        return render(request, 'homepage.html', context)
     else:
         error = "error"
-    context = {'file': 'none.html', 'error': error}
-    return render(request, 'homepage.html', context)
+        context = {'file': 'base.html', 'error': error}
+        return render(request, 'login.html', context)
 
 
 def signup(request):
