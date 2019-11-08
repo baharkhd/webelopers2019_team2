@@ -51,8 +51,6 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.save()
-        else:
-            print(form.errors)
     return render(request, 'register.html')
 
 
