@@ -9,12 +9,18 @@
     <title>Title</title>
 </head>
 <body>
-<div id="navbar" class="ui pointing method">
+    <div id="navbar" class="ui four item menu">
     <a id="logout" class="active item" href="/logout">
         خروج
     </a>
     <a id="homepage" class="active item" href="/">
         صفحه اصلی
+    </a>
+    <a id="contact_us" class="active item" href="/contact_us">
+        تماس با ما
+    </a>
+    <a id="panel" class="active item" href="/">
+        پنل کاربری
     </a>
 </div>
 {% if error %}
@@ -26,6 +32,8 @@
 {% endif %}
 
 {% block fill_block %}
+{% endblock %}
+{% block contact %}
 {% endblock %}
 </body>
 </html>
