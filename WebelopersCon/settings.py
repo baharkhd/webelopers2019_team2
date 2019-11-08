@@ -71,11 +71,12 @@ TEMPLATES = [
 ]
 
 # Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'baharkh12779@gmail.com'
-EMAIL_HOST_PASSWORD = 'baharkh79'
-EMAIL_PORT = '578'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'hamilamailee77@gmail.com'
+EMAIL_HOST_PASSWORD = 'hamila1379'
 
 WSGI_APPLICATION = 'WebelopersCon.wsgi.application'
 

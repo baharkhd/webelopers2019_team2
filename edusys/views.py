@@ -15,11 +15,7 @@ from edusys.forms import SignUpForm, ContactUsForm
 
 
 def navbar(request):
-    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
-
-
-def homepage(request):
-    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
+    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})\
 
 
 def enter_register(request):
@@ -48,7 +44,6 @@ def login_page(request):
         login_form(request)
 
 
-
 def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -63,13 +58,14 @@ def submit_contact(request):
         form = ContactUsForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data.get("title")
-            body = form.cleaned_data.get("text")
             fromEmail = form.cleaned_data.get("email")
+            body = str(form.cleaned_data.get("text")) + str(fromEmail)
             toEmail = "webe19lopers@gmail.com"
-            print("subject:", subject)
-            email = EmailMessage(subject, body, fromEmail, toEmail)
-            email.send()
-
+            # email = EmailMessage(subject, body, fromEmail, toEmail)
+            # email.send()
+            send_mail(subject, body, 'hamilamailee77@gmail.com', [toEmail])
+            # email = EmailMessage(subject, body, 'hamilamailee77@gmail.com', [toEmail])
+            # email.send()
 
             return render(request, 'contact_done.html')
         else:
@@ -77,24 +73,6 @@ def submit_contact(request):
     return render(request, 'contact_form.html')
 
 
-# def submit_contact(request):
-#     if request.method == 'POST':
-#         form = ContactUsForm(request.POST)
-#         if form.is_valid():
-#             email = form.cleaned_data.get("email")
-#             title = form.cleaned_data.get("title")
-#             text = form.cleaned_data.get("text")
-#             # if request.user.email == email:
-#             sendEmail(email, title, text)
-#
-#             # return render(request, 'contact_done.html')
-#         else:
-#             return HttpResponse(form.email)
-#     return render(request, 'contact_form.html')
-
-
 def sendEmail(fromEmail, title, text):
     res = send_mail(title, (fromEmail, text), fromEmail, ['webe19lopers@gmail.com', ])
     return HttpResponse('%s' % res)
-
-
