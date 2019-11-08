@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail, EmailMessage
 from django.forms import forms
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from django.conf import settings
 
 # Create your views here.
@@ -45,12 +45,21 @@ def login_page(request):
 
 
 def signup(request):
+    login_error = ''
     if request.method == "POST":
         form = SignUpForm(request.POST)
+        pass2 = request.POST['password2']
+        pass1 = request.POST['password1']
+        if pass1 != pass2:
+            login_error = 'گذرواژه و تکرار گذرواژه یکسان نیستند'
+        if User.objects.filter(username__exact=request.POST['username']):
+            login_error = 'نام کاربری شما در سیستم موجود است'
         if form.is_valid():
             user = form.save()
             user.save()
-    return render(request, 'register.html')
+        # else:
+    # return HttpResponse(login_error)
+    return render(request, 'register.html', {"login_error": login_error})
 
 
 def submit_contact(request):
