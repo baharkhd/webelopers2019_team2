@@ -39,7 +39,6 @@ def login_page(request):
         login(request, user)
     else:
         error = "error"
-    # return HttpResponse(error)
     context = {'file': 'none.html', 'error': error}
     return render(request, 'homepage.html', context)
 
@@ -50,6 +49,8 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.save()
+        else:
+            print(form.errors)
     return render(request, 'register.html')
 
 
