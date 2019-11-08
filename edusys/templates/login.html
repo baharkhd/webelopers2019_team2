@@ -15,6 +15,9 @@
         <input name="password" placeholder="گذرواژه" type="text">
         <button name="submit" class="ui button" type="submit">">ورود</button>
     </form>
+    {% if error %}
+        <div id="error">error</div>
+    {% endif %}
 {% endblock %}
 </body>
 </html>
