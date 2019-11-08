@@ -1,7 +1,8 @@
 {% extends 'panel.html' %}
 {% block course %}
     <a id="make_new_course">
-        <form id="make_course" class="ui form">
+        <form id="make_course" class="ui form" action="/save_course" method="post">
+            {% csrf_token %}
             <div class="three fields">
                 <div class="field">
                     <label>دانشکده</label>
@@ -60,6 +61,7 @@
                     </select>
                 </div>
             </div>
+            <button name="submit" class="ui button" type="submit">ثبت واحد</button>
         </form>
     </a>
 {% endblock %}

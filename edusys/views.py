@@ -2,7 +2,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail, EmailMessage
-from django.forms import forms
+from django.forms import forms, models
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -11,7 +11,8 @@ from django.conf import settings
 # Create your views here.
 from django.urls import path
 
-from edusys.forms import SignUpForm, ContactUsForm, EditProfileForm
+from edusys.forms import SignUpForm, ContactUsForm, EditProfileForm, CourseForm
+from edusys.models import Course
 
 
 def navbar(request):
@@ -124,3 +125,17 @@ def create_course(request):
 
 def courses(request):
     return HttpResponse('courses')
+
+
+def save_course(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course = form.save()
+            course.save()
+            return HttpResponse('saved')
+        else:
+            print(form.errors)
+            return HttpResponse('faillll')
+    else:
+        return HttpResponse('/make_new_course')

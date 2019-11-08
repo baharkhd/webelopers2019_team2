@@ -11,11 +11,11 @@ urlpatterns = [
     path('login_page', views.login_page),
     path('contact_us', views.submit_contact),
     path('submit_contact', views.submit_contact),
-    path('send_email', views.sendEmail),
     path('logout', views.logout_func),
-    path('make_new_course',views.create_course),
-    path('courses',views.courses),
-    path('panel',views.panel),
+    path('make_new_course', views.create_course),
+    path('courses', views.courses),
+    path('panel', views.panel),
     path('profile', views.show_profile),
-    path('edit', views.edit_profile)
+    path('edit', views.edit_profile),
+    path('save_course', views.save_course)
 ]
