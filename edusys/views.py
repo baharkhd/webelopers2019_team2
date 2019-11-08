@@ -70,12 +70,8 @@ def submit_contact(request):
             fromEmail = form.cleaned_data.get("email")
             body = str(form.cleaned_data.get("text")) + str(fromEmail)
             toEmail = "webe19lopers@gmail.com"
-            # email = EmailMessage(subject, body, fromEmail, toEmail)
-            # email.send()
-            send_mail(subject, body, 'hamilamailee77@gmail.com', [toEmail])
-            # email = EmailMessage(subject, body, 'hamilamailee77@gmail.com', [toEmail])
-            # email.send()
-
+            email = EmailMessage(subject, body, toEmail)
+            email.send()
             return render(request, 'contact_done.html')
         else:
             return render(request, 'contact_form.html')
