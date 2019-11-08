@@ -64,6 +64,11 @@ def signup(request):
     return render(request, 'register.html', {"login_error": login_error})
 
 
+def logout_func(request):
+    logout(request)
+    return redirect('/')
+
+
 def submit_contact(request):
     file = None
     if request.user.is_authenticated:
