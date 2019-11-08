@@ -26,6 +26,23 @@ def enter_register(request):
     return render(request, 'register.html')
 
 
+def login_form(request):
+    return render(request, 'login.html')
+
+
+def login_page(request):
+    error = ""
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+    else:
+        error = "error"
+    context = {'file': 'none.html', 'error': error}
+    return render(request, 'homepage.html', context)
+
+
 def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -58,42 +75,3 @@ def submit_contact(request):
 def sendEmail(fromEmail, title, text):
     res = send_mail(title, (fromEmail, text), fromEmail, ['webe19lopers@gmail.com', ])
     return HttpResponse('%s' % res)
-
-
-def login_form(request):
-    return render(request, 'login.html')
-
-
-def login_page(request):
-    if request.method == 'POST':
-        form = LoginForm()
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            if request.user.username == username and request.user.password == password:
-                return HttpResponse('user logged in')
-            else:
-                return HttpResponse('you cannot log in')
-
-    # error = ""
-    # username = request.POST['username']
-    # password = request.POST['password']
-    # user = authenticate(request, username=username, password=password)
-    # if user is not None:
-    #     login(request, user)
-    # else:
-    #     error = "error"
-    # # return HttpResponse(error)
-    # context = {'file': 'none.html', 'error': error}
-    # return render(request, 'homepage.html', context)
-    # if request.method == 'POST':
-
-        # form = LoginForm()
-        # if form.is_valid():
-        #     username = form.cleaned_data.get('username')
-        #     password = form.cleaned_data.get('password')
-        #     if username == request.user.username and password == request.user.password:
-        #         return HttpResponse("successfully logged in")
-        #     else:
-        #         return HttpResponse("you can not login")
-        # return HttpResponse('nothing happend :|')
