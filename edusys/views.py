@@ -94,3 +94,15 @@ def submit_contact(request):
 def sendEmail(fromEmail, title, text):
     res = send_mail(title, (fromEmail, text), fromEmail, ['webe19lopers@gmail.com', ])
     return HttpResponse('%s' % res)
+
+
+def panel(request):
+    return render(request, 'panel.html')
+
+
+def create_course(request):
+    return render(request, 'course_form.html')
+
+
+def courses(request):
+    return HttpResponse('courses')

@@ -1,0 +1,65 @@
+{% extends 'panel.html' %}
+{% block course %}
+    <a id="make_new_course">
+        <form id="make_course" class="ui form">
+            <div class="three fields">
+                <div class="field">
+                    <label>دانشکده</label>
+                    <input name="department" type="text" placeholder="دانشکده">
+                </div>
+                <div class="field">
+                    <label>نام</label>
+                    <input name="name" type="text" placeholder="نام">
+                </div>
+                <div class="field">
+                    <label>شماره درس</label>
+                    <input name="course_number" type="text" placeholder="شماره درس">
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>شماره گروه</label>
+                    <input name="group_number" type="text" placeholder="شماره گروه">
+                </div>
+                <div class="field">
+                    <label>نام استاد</label>
+                    <input name="teacher" type="text" placeholder="نام استاد">
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>ساعت شروع</label>
+                    <input name="start_time" type="text" placeholder="ساعت شروع">
+                </div>
+                <div class="field">
+                    <label>ساعت پایان</label>
+                    <input name="end_time" type="text" placeholder="ساعت پایان">
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>روز اول</label>
+                    <select name="first_day" class="ui dropdown">
+                        <option value="">روز اول</option>
+                        <option value="0">شنبه</option>
+                        <option value="1">یکشنبه</option>
+                        <option value="2">دوشنبه</option>
+                        <option value="3">سه‌شنبه</option>
+                        <option value="4">چهارشنبه</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>روز دوم</label>
+                    <select name="second_day" class="ui dropdown">
+                        <option value="">روز دوم</option>
+                        <option value="0">شنبه</option>
+                        <option value="1">یکشنبه</option>
+                        <option value="2">دوشنبه</option>
+                        <option value="3">سه‌شنبه</option>
+                        <option value="4">چهارشنبه</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </a>
+{% endblock %}

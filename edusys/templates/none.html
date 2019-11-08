@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Title</title>
 </head>
 <body>
-    <div id="navbar" class="ui four item menu">
+<div id="navbar" class="ui four item menu">
     <a id="logout" class="active item" href="/logout">
         خروج
     </a>
@@ -19,7 +17,7 @@
     <a id="contact_us" class="active item" href="/contact_us">
         تماس با ما
     </a>
-    <a id="panel" class="active item" href="/">
+    <a id="panel" class="active item" href="/panel">
         پنل کاربری
     </a>
 </div>
@@ -32,5 +30,11 @@
 {% endif %}
 {% block contact %}
 {% endblock %}
+{% block panel %}
+{% endblock %}
+{% block course %}
+{% endblock %}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </body>
 </html>
