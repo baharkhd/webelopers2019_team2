@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.forms import forms
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -70,7 +70,14 @@ def submit_contact(request):
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
         if form.is_valid():
-            # email = form.cleaned_data.get("email")
+            subject = form.cleaned_data.get("title")
+            body = form.cleaned_data.get("text")
+            fromEmail = form.cleaned_data.get("email")
+            toEmail = "webe19lopers@gmail.com"
+            print("subject:", subject)
+            email = EmailMessage(subject, body, fromEmail, toEmail)
+            email.send()
+
 
             return render(request, 'contact_done.html')
         else:
@@ -97,3 +104,5 @@ def submit_contact(request):
 def sendEmail(fromEmail, title, text):
     res = send_mail(title, (fromEmail, text), fromEmail, ['webe19lopers@gmail.com', ])
     return HttpResponse('%s' % res)
+
+
