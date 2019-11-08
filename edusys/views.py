@@ -67,7 +67,7 @@ def submit_contact(request):
             return render(request, 'contact_done.html')
 
         else:
-            return HttpResponse(form.errors)
+            return render(request, 'contact_form.html')
     return render(request, 'contact_form.html')
 
 # def submit_contact(request):
