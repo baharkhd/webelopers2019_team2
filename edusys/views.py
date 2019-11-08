@@ -69,8 +69,8 @@ def submit_contact(request):
             return render(request, 'contact_done.html')
 
         else:
-            return render(request, 'contact_form.html', {'form': ContactUsForm})
-    return render(request, 'contact_form.html', {'form': ContactUsForm})
+            return render(request, 'contact_form.html')
+    return render(request, 'contact_form.html')
 
 
 # def submit_contact(request):
