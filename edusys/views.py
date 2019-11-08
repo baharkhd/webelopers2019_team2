@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail, EmailMessage
 from django.forms import forms
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from django.conf import settings
 
 # Create your views here.
@@ -15,10 +15,6 @@ from edusys.forms import SignUpForm, ContactUsForm
 
 
 def navbar(request):
-    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
-
-
-def homepage(request):
     return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
 
 
@@ -78,7 +74,6 @@ def submit_contact(request):
             email = EmailMessage(subject, body, fromEmail, toEmail)
             email.send()
 
-
             return render(request, 'contact_done.html')
         else:
             return render(request, 'contact_form.html')
@@ -106,3 +101,6 @@ def sendEmail(fromEmail, title, text):
     return HttpResponse('%s' % res)
 
 
+def logout_func(request):
+    logout(request)
+    return redirect('/')
