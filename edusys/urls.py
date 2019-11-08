@@ -11,6 +11,6 @@ urlpatterns = [
     path('login_page', views.login_page),
     path('contact_us', views.submit_contact),
     path('submit_contact', views.submit_contact),
-    path('send_email', views.sendEmail),
+    path('profile', views.show_profile)
     # path('logout', )
 ]

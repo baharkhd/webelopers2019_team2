@@ -57,8 +57,6 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.save()
-        # else:
-    # return HttpResponse(login_error)
     return render(request, 'register.html', {"login_error": login_error})
 
 
@@ -67,10 +65,11 @@ def submit_contact(request):
         form = ContactUsForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data.get("title")
-            fromEmail = form.cleaned_data.get("email")
-            body = str(form.cleaned_data.get("text")) + str(fromEmail)
-            toEmail = "webe19lopers@gmail.com"
-            email = EmailMessage(subject, body, toEmail)
+            from_email = form.cleaned_data.get("email")
+            body = str(form.cleaned_data.get("text")) + str(from_email)
+            to_email = ["webe19lopers@gmail.com", ]
+            # send_mail(subject, body, 'hamilamailee77@gmail.com', to_email)
+            email = EmailMessage(subject, body, to_email)
             email.send()
             return render(request, 'contact_done.html')
         else:
@@ -78,6 +77,10 @@ def submit_contact(request):
     return render(request, 'contact_form.html')
 
 
-def sendEmail(fromEmail, title, text):
-    res = send_mail(title, (fromEmail, text), fromEmail, ['webe19lopers@gmail.com', ])
-    return HttpResponse('%s' % res)
+def show_profile(request):
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    username = request.user.username
+
+    context = {'first_name': first_name, 'last_name': last_name, 'username': username}
+    return render(request, 'profile.html', context)
