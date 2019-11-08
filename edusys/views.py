@@ -15,7 +15,10 @@ from edusys.forms import SignUpForm, ContactUsForm
 
 
 def navbar(request):
-    return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
+    if request.user.is_authenticated:
+        return render(request, 'homepage.html', {'file': 'none.html', 'error': ''})
+    else:
+        return render(request, 'homepage.html', {'file': 'base.html', 'error': ''})
 
 
 def enter_register(request):
@@ -35,7 +38,7 @@ def login_page(request):
         if user is not None:
             login(request, user)
             context = {'file': 'none.html', 'error': error}
-            return render(request, 'homepage.html', context)
+            return redirect('/')
         else:
             error = "error"
             context = {'file': 'base.html', 'error': error}
@@ -63,6 +66,11 @@ def signup(request):
 
 
 def submit_contact(request):
+    file = None
+    if request.user.is_authenticated:
+        file = 'none.html'
+    else:
+        file = 'base.html'
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
         if form.is_valid():
@@ -71,13 +79,12 @@ def submit_contact(request):
             fromEmail = form.cleaned_data.get("email")
             toEmail = "webe19lopers@gmail.com"
             print("subject:", subject)
-            email = EmailMessage(subject, body, fromEmail, toEmail)
+            email = EmailMessage(subject, body, toEmail)
             email.send()
-
-            return render(request, 'contact_done.html')
+            return render(request, 'contact_done.html', {'file': file})
         else:
-            return render(request, 'contact_form.html')
-    return render(request, 'contact_form.html')
+            return render(request, 'contact_form.html', {'file': file})
+    return render(request, 'contact_form.html', {'file': file})
 
 
 # def submit_contact(request):
