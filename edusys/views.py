@@ -60,16 +60,28 @@ def submit_contact(request):
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get("email")
-            title = form.cleaned_data.get("title")
-            text = form.cleaned_data.get("text")
+            # email = form.cleaned_data.get("email")
             # if request.user.email == email:
-            sendEmail(email, title, text)
+            return render(request, 'contact_done.html')
 
-            # return render(request, 'contact_done.html')
         else:
-            return HttpResponse(form.email)
+            return HttpResponse(form.errors)
     return render(request, 'contact_form.html')
+
+# def submit_contact(request):
+#     if request.method == 'POST':
+#         form = ContactUsForm(request.POST)
+#         if form.is_valid():
+#             email = form.cleaned_data.get("email")
+#             title = form.cleaned_data.get("title")
+#             text = form.cleaned_data.get("text")
+#             # if request.user.email == email:
+#             sendEmail(email, title, text)
+#
+#             # return render(request, 'contact_done.html')
+#         else:
+#             return HttpResponse(form.email)
+#     return render(request, 'contact_form.html')
 
 
 def sendEmail(fromEmail, title, text):
