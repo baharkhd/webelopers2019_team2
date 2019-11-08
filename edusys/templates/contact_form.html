@@ -10,13 +10,12 @@
     <form id="contact_us_form" class="ui form" method="post" action="/submit_contact">
         {% csrf_token %}
         <label>عنوان</label>
-        <input name="title" placeholder="عنوان" type="text">
+        <input name="title" placeholder="عنوان" type="text" required>
         <label>ایمیل</label>
-        <input name="email" placeholder="ایمیل" type="text">
+        <input name="email" placeholder="ایمیل" type="text" required>
         <label>متن</label>
-        <textarea name="text" placeholder="متن" maxlength="250" minlength="10"></textarea>
-
-        <button name="submit" class="ui button" type="submit">">ورود</button>
+        <textarea name="text" placeholder="متن" maxlength="250" minlength="10" required></textarea>
+        <button name="submit" class="ui button" type="submit">ورود</button>
     </form>
 
 {% endblock %}
