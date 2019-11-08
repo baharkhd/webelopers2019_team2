@@ -23,3 +23,8 @@ class ContactUsForm(forms.Form):
     title = forms.CharField(max_length=200)
     email = forms.EmailField()
     text = forms.CharField(min_length=10, max_length=250, widget=forms.Textarea)
+
+
+class EditProfileForm(forms.Form):
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)

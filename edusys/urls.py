@@ -15,5 +15,7 @@ urlpatterns = [
     path('logout', views.logout_func),
     path('make_new_course',views.create_course),
     path('courses',views.courses),
-    path('panel',views.panel)
+    path('panel',views.panel),
+    path('profile', views.show_profile),
+    path('edit', views.edit_profile)
 ]

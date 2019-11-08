@@ -11,7 +11,7 @@ from django.conf import settings
 # Create your views here.
 from django.urls import path
 
-from edusys.forms import SignUpForm, ContactUsForm
+from edusys.forms import SignUpForm, ContactUsForm, EditProfileForm
 
 
 def navbar(request):
@@ -79,11 +79,11 @@ def submit_contact(request):
         form = ContactUsForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data.get("title")
-            fromEmail = form.cleaned_data.get("email")
-            body = str(form.cleaned_data.get("text")) + str(fromEmail)
-            toEmail = "webe19lopers@gmail.com"
-            print("subject:", subject)
-            email = EmailMessage(subject, body, toEmail)
+            from_email = form.cleaned_data.get("email")
+            body = str(form.cleaned_data.get("text")) + str(from_email)
+            to_email = "baharkh127@gmail.com"
+            # send_mail(subject, body, 'hamilamailee77@gmail.com', to_email)
+            email = EmailMessage(subject, body, to_email)
             email.send()
             return render(request, 'contact_done.html', {'file': file})
         else:
@@ -91,9 +91,27 @@ def submit_contact(request):
     return render(request, 'contact_form.html', {'file': file})
 
 
-def sendEmail(fromEmail, title, text):
-    res = send_mail(title, (fromEmail, text), fromEmail, ['webe19lopers@gmail.com', ])
-    return HttpResponse('%s' % res)
+def show_profile(request):
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    username = request.user.username
+
+    context = {'first_name': first_name, 'last_name': last_name, 'username': username}
+    return render(request, 'profile.html', context)
+
+
+def edit_profile(request):
+    if request.method == 'GET':
+        return render(request, 'edit_pro.html')
+    else:
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data.get("first_name")
+            last_name = form.cleaned_data.get("last_name")
+            request.user.first_name = first_name
+            request.user.last_name = last_name
+            request.user.save()
+            return redirect('/profile')
 
 
 def panel(request):
