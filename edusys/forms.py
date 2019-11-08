@@ -13,10 +13,10 @@ class SignUpForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2',)
 
 
-# class LoginForm(UserCreationForm):
-#     class Meta:
-#         model = User
-#         fields = ('username', 'password',)
+class LoginForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password',)
 
 
 class ContactUsForm(forms.Form):

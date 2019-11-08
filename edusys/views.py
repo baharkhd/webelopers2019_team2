@@ -44,7 +44,9 @@ def login_page(request):
             error = "error"
             context = {'file': 'base.html', 'error': error}
             return render(request, 'login.html', context)
-    login_form(request)
+    else:
+        login_form(request)
+
 
 
 def signup(request):
@@ -56,18 +58,14 @@ def signup(request):
     return render(request, 'register.html')
 
 
-def enter_contact_us(request):
-    return render(request, 'contact_form.html')
-
-
 def submit_contact(request):
+
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
         if form.is_valid():
             # email = form.cleaned_data.get("email")
-            # if request.user.email == email:
-            return render(request, 'contact_done.html')
 
+            return render(request, 'contact_done.html')
         else:
             return render(request, 'contact_form.html')
     return render(request, 'contact_form.html')

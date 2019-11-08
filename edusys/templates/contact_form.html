@@ -7,7 +7,7 @@
 </head>
 <body>
 {% block contact %}
-    <form id="contact_us_form" class="ui form" method="post" action="/submit_contact">
+    <form id="contact_us_form" class="ui form" method="post" action="/contact_us">
         {% csrf_token %}
         <label>عنوان</label>
         <input name="title" placeholder="عنوان" type="text" required>
@@ -16,6 +16,8 @@
         <label>متن</label>
         <textarea name="text" placeholder="متن"></textarea>
         <button name="submit" class="ui button" type="submit">ورود</button>
+
+
     </form>
 
 {% endblock %}
