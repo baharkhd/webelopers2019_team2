@@ -37,7 +37,6 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            context = {'file': 'none.html', 'error': error}
             return redirect('/')
         else:
             error = "error"
@@ -75,8 +74,8 @@ def submit_contact(request):
         form = ContactUsForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data.get("title")
-            body = form.cleaned_data.get("text")
             fromEmail = form.cleaned_data.get("email")
+            body = str(form.cleaned_data.get("text")) + str(fromEmail)
             toEmail = "webe19lopers@gmail.com"
             print("subject:", subject)
             email = EmailMessage(subject, body, toEmail)
@@ -87,27 +86,6 @@ def submit_contact(request):
     return render(request, 'contact_form.html', {'file': file})
 
 
-# def submit_contact(request):
-#     if request.method == 'POST':
-#         form = ContactUsForm(request.POST)
-#         if form.is_valid():
-#             email = form.cleaned_data.get("email")
-#             title = form.cleaned_data.get("title")
-#             text = form.cleaned_data.get("text")
-#             # if request.user.email == email:
-#             sendEmail(email, title, text)
-#
-#             # return render(request, 'contact_done.html')
-#         else:
-#             return HttpResponse(form.email)
-#     return render(request, 'contact_form.html')
-
-
 def sendEmail(fromEmail, title, text):
     res = send_mail(title, (fromEmail, text), fromEmail, ['webe19lopers@gmail.com', ])
     return HttpResponse('%s' % res)
-
-
-def logout_func(request):
-    logout(request)
-    return redirect('/')
