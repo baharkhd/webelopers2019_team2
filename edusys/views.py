@@ -11,7 +11,7 @@ from django.conf import settings
 # Create your views here.
 from django.urls import path
 
-from edusys.forms import SignUpForm, LoginForm, ContactUsForm
+from edusys.forms import SignUpForm, ContactUsForm
 
 
 def navbar(request):
